@@ -1,0 +1,45 @@
+body{
+    background-color: #111827;
+    color: white;
+    border: solid 1px rgb(255, 255, 255) ;
+    box-shadow: 5px 5px 5px rgb(243, 241, 241);
+    width: 40%;
+     margin-left: 190px;
+     padding: 40px;
+     margin-right: 105px;
+    
+   
+}
+button{
+    background-color: rgb(18, 174, 18);
+     color: white;
+      padding: 10px;
+      margin-left: 30px;
+      width: 20%;
+      border-radius: 20px;
+    
+}
+h3{
+    border: solid 1px blueviolet;
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    background-color: blueviolet;
+     margin-left: 30px;
+     border-radius: 20px;
+}
+
+Label{
+    display: flex;
+
+
+}
+
+form{
+    
+    gap: 1px;
+    margin-left: 60px;
+    padding: 10px;
+    border: solid 2px color rgb(255, 254, 254);
+}
+
