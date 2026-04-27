@@ -1,0 +1,277 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+    flex: 1;
+}
+h1,h2,
+h3{
+    color: white;
+}
+/*bar laterale*/
+.sidebar{
+    width: 240px;
+    min-height: 100vh;
+    padding: 20px;
+    background: linear-gradient(180deg, #0f172a, #0ea5e9);
+    color: white;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.3);
+    box-sizing: border-box;
+}
+
+.sidebar h2 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.sidebar p{
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+    color: blanchedalmond;
+}
+.sidebar img{
+    width: 100%;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow:0 4px 10px rgba(0,0,0,0.4) ;
+    height: auto;
+    display: block;
+    margin-bottom: 16px;
+}
+tr{
+    background-color: #111827;
+}
+.sidebar h2,h3 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 15px 0;
+}
+/*main*/
+.produit_zone{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+.main-content {
+    flex: 1;
+    padding: 30px;
+    background: #111827;
+    box-sizing: border-box;
+}
+
+.cards {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: blueviolet;
+    padding: 20px;
+    border-radius: 10px;
+    width: 120px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border: solid white;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+th {
+    background:blueviolet;
+    color: white;
+}
+.admin-content {
+    flex: 1;
+    padding: 30px;
+    background: #111827;
+}
+
+.admin-table {
+    width: 95%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: white;
+}
+
+.admin-table th,
+.admin-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.admin-table th {
+    background:blueviolet ;
+    color: white;
+}
+.category-tabs {
+    margin: 20px 0;
+    display: flex;
+    gap: 15px;
+}
+
+.tab {
+    padding: 10px 20px;
+    border: none;
+    background: #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.tab.active {
+    background: #00c8d7;
+    color: white;
+}
+.zone_recherche{
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    align-items: center;
+    
+}
+.zone_recherche input{
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+/*les bouton a revoir*/
+.bouton_ok,
+.bouton_ajouter{
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+
+.bouton_ok{
+    background: #ef4444;
+}
+
+.bouton_ajouter{
+    background: #22c55e;
+}
+/*.boutton_acceuil{
+    background: blueviolet;
+    color: white;
+    border-color: black;
+}*/
+.menu-btn{
+    display: block;
+    width: 90%;
+    padding: 12px;
+    margin: 12px auto;
+    text-align: center;
+    text-decoration: none;
+    background: #6366f1;
+    color: white;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.menu-btn:hover{
+    background: #4f46e5;
+    transform: scale(1.03);
+}
+
+.menu-btn:hover {
+    background: #4f46e5;
+}
+.carte{
+    width: 250px;
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    margin: 15px;
+}
+.carte img{
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.price{
+    display: block;
+    margin: 10px 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #00c8d7;
+}
+.carte h3{
+    margin: 10px 0 5px;
+}
+.carte p{
+    color: #555;
+}
+.carte button{
+    width: 100%;
+    background: green;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+.footer{
+    width: 100%;
+    background: blueviolet;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
+}
+.head{
+    width: 100%;
+    background: blueviolet;
+    text-align: center;
+    padding: 15px ;
+    margin-top: 20px;
+}
+.categorie_body{
+    background-color: #111827;
+}
+a{
+    text-align: center;
+    color: white;
+}
+.active{
+    background: #4338ca;
+}
