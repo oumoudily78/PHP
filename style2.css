@@ -30,7 +30,7 @@ body{
 
 a{
     text-align: center;
-    color: white;
+    color: black;
 }
 .search-box button{
     width: 100%;
@@ -50,4 +50,7 @@ a{
     font-size: 16px;
     margin-bottom: 15px;
     box-sizing: border-box;
+}
+button{
+    text-align: center;
 }

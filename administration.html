@@ -6,9 +6,16 @@
     <title>Administration</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<script>
+function supprimerLigne(btn) {
+    if (confirm("Voulez-vous supprimer ce produit ?")) {
+        btn.parentNode.parentNode.remove();
+    }
+}
+</script>
 <body>
     <header class="head">
-        <h2>🛍 Ma Boutique</h2>
+        <h2>🛍 Omnistock Vesta</h2>
     </header>
     <div class="dashboard">
 
@@ -17,17 +24,13 @@
                 <li><a href="accueil.html"><button class="menu-btn active">🏠 Accueil</button></a></li>
                 <li class="active"><a href="administration.html"><button class="menu-btn active">⚙️ Administration</button></a></li>
             </ul>
-            <img src="Image/im1e.jpg" alt="image">
-            <p>Votre satisfaction est notre combat</p>
-            <p>Pour vous servir</p>
         </aside>
 
         <main class="admin-content">
-            <h1>Gestion des Produits</h1>
+            <h1>Gestion des Categorie</h1>
             <div class="zone_recherche">
                 <input type="text" placeholder="Rechercher une catégorie...">
                 <button class="bouton_ok"><a href="supp-details/rechercher.html">OK</a></button>
-                <button class="bouton_ajouter"><a href="Ajout_mise_a_jour/Ajouter_Categorie.html">Ajouter</a></button>
             </div>
             <div class="category-tabs">
                 <button class="card"><a href="pc2.html">PC</a></button>
@@ -47,20 +50,26 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td>
+                        <button class="btn_dus-update"><a href="Ajout_mise_a_jour/Mise_à_jour_Categorie.html">⬆ Update</a></button>
+                        <button class="btn_dus-sup" onclick="supprimerLigne(this)">🗑 Supprimer</button>
+                    </td>
                 </tr>
 
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td>
+                        <button class="btn_dus-update"><a href="Ajout_mise_a_jour/Mise_à_jour_Categorie.html">⬆ Update</a></button>
+                        <button class="btn_dus-sup" onclick="supprimerLigne(this)">🗑 Supprimer</button>
+                    </td>
                 </tr>
             </table>
         </main>
     </div>
     <footer class="footer">
-        @$ 2026 Ma boutique - tous droits réservés
+        @$ 2026 🛍 Omnistock Vesta - tous droits réservés
         Gestion de produit<br>
         email: groupe8@gmail.com<br>
         numero: 76 87 97 74<br>

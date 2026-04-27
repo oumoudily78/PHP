@@ -1,22 +1,20 @@
 body{
     background-color: #111827;
-    color: white;
-    border: solid 1px rgb(255, 255, 255) ;
-    box-shadow: 5px 5px 5px rgb(243, 241, 241);
-    width: 40%;
-     margin-left: 190px;
-     padding: 40px;
-     margin-right: 105px;
-    
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 70px;
    
 }
 button{
     background-color: rgb(18, 174, 18);
-     color: white;
-      padding: 10px;
-      margin-left: 30px;
-      width: 20%;
-      border-radius: 20px;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
     
 }
 h3{
@@ -24,17 +22,27 @@ h3{
     width: 50%;
     padding: 5px;
     text-align: center;
-    background-color: blueviolet;
-     margin-left: 30px;
-     border-radius: 20px;
+    background-color: violet;
+    margin-left: 30px;
+    border-radius: 20px;
 }
 
 Label{
     display: flex;
-
-
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #070707;
 }
-
+.block{
+    width: 100%;
+    padding: 30px 40px;
+    background: blueviolet;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    width: 100%;
+    max-width: 400px;
+}
 form{
     
     gap: 1px;

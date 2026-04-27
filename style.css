@@ -128,7 +128,7 @@ th {
 .admin-table td {
     border: 1px solid #ddd;
     padding: 12px;
-    text-align: left;
+    text-align: center;
 }
 
 .admin-table th {
@@ -265,13 +265,34 @@ th {
     padding: 15px ;
     margin-top: 20px;
 }
+.head h2{
+    color: black;
+}
 .categorie_body{
     background-color: #111827;
 }
 a{
     text-align: center;
-    color: white;
+    color: black;
 }
 .active{
     background: #4338ca;
+}
+.btn_dus-update,
+.btn_dus-sup,
+.btn_dus-details{
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn_dus-update{
+    background: green;
+}
+.btn_dus-sup{
+    background: red;
+}
+.btn_dus-details{
+    background: yellow;
 }
