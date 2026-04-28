@@ -2,7 +2,6 @@ body{
     background-color: #111827;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     align-items: center;
-    
     justify-content: center;
     margin: 70px;
    
@@ -31,7 +30,7 @@ Label{
     display: flex;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #e7dcdc;
+    color: white;
 }
 .block{
     width: 100%;
