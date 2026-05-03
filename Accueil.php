@@ -1,3 +1,25 @@
+<?php
+require_once 'partie_php/config.php';
+
+$recherche_produits = [];
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+
+if (!empty($search)) {
+    try {
+        // On cherche dans tous les produits, peu importe la catégorie
+        $sql = "SELECT p.*, c.label as cat_nom 
+                FROM produits p 
+                JOIN categories c ON p.categorie_id = c.id 
+                WHERE p.nom LIKE :search OR p.description LIKE :search";
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['search' => "%$search%"]);
+        $recherche_produits = $stmt->fetchAll();
+    } catch (Exception $e) {
+        $recherche_produits = [];
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,7 +39,7 @@
                 <h2>🛍 Omnistock Vesta</h2>
                 <ul>
                     <li class="menu-btn active">🏠 Accueil</li>
-                    <li><a href="administration.html"><button class="menu-btn active">⚙️ Administration</button></a></li>
+                    <li><a href="administration.php"><button class="menu-btn active">⚙️ Administration</button></a></li>
                 </ul>
                 <h3>Bienvenue 🖐</h3>
         </aside>

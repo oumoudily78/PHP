@@ -43,10 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['nom'])) {
 <head>
     <meta charset="UTF-8">
     <title>Ajouter un Produit</title>
-    <link rel="stylesheet" href="../sytle3.css">
+    <link rel="stylesheet" href="../Ajout_mise_a_jour/sytle3.css">
 </head>
 <body>
-    <div class="box">
+    <div class="block">
         <h2>Ajouter un nouveau produit</h2>
         
         <form action="Ajouter_produit.php" method="POST">

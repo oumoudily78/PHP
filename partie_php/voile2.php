@@ -1,22 +1,22 @@
 <?php
 require_once 'config.php';
 
-try {
-    // On cherche les produits qui appartiennent à la catégorie 'PC'
-    $sql = "SELECT p.* FROM produits p 
-            JOIN categories c ON p.categorie_id = c.id 
-            WHERE c.label = 'Voile'";
-            
-    $stmt = $pdo->query($sql);
-    $produits = $stmt->fetchAll();
+// 1. On récupère le mot tapé par l'utilisateur
+$search = isset($_GET['search']) ? $_GET['search'] : '';
 
-    // Si la base est vide, on force $produits à être un tableau vide au lieu de "null"
-    if (!$produits) {
-        $produits = [];
-    }
+try {
+    // 2. Requête filtrée par le nom (si $search n'est pas vide)
+    $sql = "SELECT p.*, c.label 
+            FROM produits p 
+            JOIN categories c ON p.categorie_id = c.id 
+            WHERE c.label = 'Voile' AND p.nom LIKE :search";
+            
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['search' => "%$search%"]);
+    $produits = $stmt->fetchAll();
+    
 } catch (Exception $e) {
     $produits = [];
-    // echo "Erreur : " . $e->getMessage(); // Optionnel pour le débug
 }
 ?>
 
@@ -34,13 +34,16 @@ try {
             <h2>🛍 Omnistock Vesta</h2>
         </header>
         
-        <h3>Categorie voile</h3>
+        <h3>Categorie PC</h3>
 
         <div class="zone_recherche">
-            <input type="text" placeholder="Rechercher un produit...">
-            <button class="bouton_ok">OK</button>
+            <form method="GET" action="pc2.php" style="display: inline-block;">
+                <input type="text" name="search" placeholder="Rechercher un produit..." value="<?= htmlspecialchars($search) ?>">
+                <button type="submit" class="bouton_ok">OK</button>
+            </form>
+
             <button class="bouton_ajouter">
-                <a href="partie_php/Ajouter_produit.php" style="text-decoration:none; color:inherit;">+ Ajouter</a>
+                <a href="Ajouter_produit.php" style="text-decoration:none; color:inherit;">+ Ajouter</a>
             </button>
         </div>
 
@@ -74,16 +77,16 @@ try {
                             </button>
 
                             <button class="btn_dus-sup">
-                                <a href="supprimer.php?id=<?= $p['id'] ?>" 
-                                   onclick="return confirm('Voulez-vous vraiment supprimer ce produit ?')" 
-                                   style="text-decoration:none; color:inherit;">🗑 Supprimer</a>
+                                <a href="supprimer.php?id=<?= $p['id'] ?>" onclick="return confirm('Es-tu sûr de vouloir supprimer ce produit ?');">
+                                Supprimer
+                                </a>
                             </button>
                         </td>
                     </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="6" style="text-align:center;">Aucun produit trouvé dans cette catégorie.</td>
+                        <td colspan="6" style="text-align:center;">Aucun produit trouvé.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

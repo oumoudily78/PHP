@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['label'])) {
 <head>
     <meta charset="UTF-8">
     <title>Ajouter Categorie</title>
-    <link rel="stylesheet" href="../sytle3.css">
+    <link rel="stylesheet" href="../Ajout_mise_a_jour/sytle3.css">
 </head>
 <body>
     <div class="block">
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['label'])) {
             <label for="text">Code:</label> 
             <input type="text" name="code" id="text"><br><br>
             <label for="text">Label:</label>
-            <input type="text"name="label" id="text">"<br><br>
+            <input type="text"name="label" id="text"><br><br>
             <button type="submit" >Ajouter</button>
         </form>
     </div>

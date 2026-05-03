@@ -121,7 +121,7 @@ th {
     width: 95%;
     margin-top: 20px;
     border-collapse: collapse;
-    background: white;
+    background: #111827;
 }
 
 .admin-table th,
@@ -129,6 +129,7 @@ th {
     border: 1px solid #ddd;
     padding: 12px;
     text-align: center;
+    color: white ;
 }
 
 .admin-table th {
