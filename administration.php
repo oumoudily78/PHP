@@ -1,12 +1,23 @@
 <?php
-require_once 'partie_php/config.php'; // Vérifie bien le chemin vers ton config.php
+require_once 'partie_php/config.php';
+
+// On récupère ce que l'utilisateur tape
+$search = isset($_GET['search_cat']) ? $_GET['search_cat'] : '';
 
 try {
-    // On récupère toutes les catégories de la base de données
-    $stmt = $pdo->query("SELECT * FROM categories");
+    if (!empty($search)) {
+        // On utilise deux marqueurs différents pour éviter l'erreur
+        $stmt = $pdo->prepare("SELECT * FROM categories WHERE label LIKE :s1 OR code LIKE :s2");
+        $stmt->execute([
+            's1' => "%$search%",
+            's2' => "%$search%"
+        ]);
+    } else {
+        $stmt = $pdo->query("SELECT * FROM categories");
+    }
     $liste_categories = $stmt->fetchAll();
 } catch (Exception $e) {
-    $liste_categories = [];
+    die("Erreur : " . $e->getMessage());
 }
 ?>
 <!DOCTYPE html>
@@ -40,8 +51,14 @@ function supprimerLigne(btn) {
         <main class="admin-content">
             <h1>Gestion des Categorie</h1>
             <div class="zone_recherche">
-                <input type="text" placeholder="Rechercher une catégorie...">
-                <button class="bouton_ok"><a href="supp-details/rechercher.html">OK</a></button>
+                <form method="GET" action="administration.php" style="display: flex; width: 100%;">
+                    <input type="text" name="search_cat" placeholder="Rechercher une catégorie par nom ou code..." 
+                        value="<?= htmlspecialchars($search) ?>" style="flex-grow: 1;">
+                    <button type="submit" class="bouton_ok">OK</button>
+                    <?php if(!empty($search)): ?>
+                        <a href="administration.php" style="margin-left:10px; color:white;">Réinitialiser</a>
+                    <?php endif; ?>
+                </form>
             </div>
             <div class="category-tabs">
                 <button class="card"><a href="partie_php/pc2.php">PC</a></button>
