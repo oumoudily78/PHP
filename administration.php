@@ -55,7 +55,7 @@ function supprimerLigne(btn) {
                         <?php foreach ($liste_categories as $cat): ?>
                             <tr>
                                 <td><?= htmlspecialchars($cat['id']) ?></td>
-                                <td><?= htmlspecialchars($cat['id']) ?></td>
+                                <td><?= htmlspecialchars($cat['code']) ?></td>
                                 <td><?= htmlspecialchars($cat['label']) ?></td>
                                 <td>
                                     <button class="btn_dus-update">

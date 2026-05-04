@@ -23,7 +23,7 @@ if (!$categorie) {
 <head>
     <meta charset="UTF-8">
     <title>Mise à jour Catégorie</title>
-    <link rel="stylesheet" href="../Ajout_mise_a_jour/sytle3.css">
+    <link rel="stylesheet" href="../Ajout_mise_a_jour/Sytle3.css">
 </head>
 <body>
     <h3>Mise à jour catégorie</h3>

@@ -31,27 +31,45 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Détails du produit</title>
-    <link rel="stylesheet" href="../Ajout_mise_a_jour/sytle3.css">
+    <title>Modifier le produit</title>
+    <link rel="stylesheet" href="../Ajout_mise_a_jour/Sytle3.css"> 
 </head>
 <body>
-    <div class="detail-box">
-        <header class="head">
-            <h2>Détails du Produit</h2>
-        </header>
 
-        <div class="fiche-details">
-            <p><strong>ID :</strong> <?= htmlspecialchars($produit['id']) ?></p>
-            <p><strong>Nom :</strong> <?= htmlspecialchars($produit['nom']) ?></p>
-            <p><strong>Description :</strong> <?= nl2br(htmlspecialchars($produit['description'])) ?></p>
-            <p><strong>Prix :</strong> <?= htmlspecialchars($produit['prix']) ?> FCFA</p>
-            <p><strong>Catégorie :</strong> <?= htmlspecialchars($produit['nom_categorie']) ?></p>
-            
-            <br>
-            <button class="bouton_ok">
-                <a href="javascript:history.back()" style="text-decoration:none; color:inherit;">Retour</a>
+<div class="block">
+    <h3>Modifier le produit</h3>
+    
+    <form action="traiter_update.php" method="POST">
+        <input type="hidden" name="id" value="<?= $produit['id'] ?>">
+
+        <div class="form-group">
+            <label>Nom du produit :</label>
+            <input type="text" name="nom" value="<?= htmlspecialchars($produit['nom']) ?>" required>
+        </div>
+
+        <div class="form-group">
+            <label>Description :</label>
+            <textarea name="description" rows="5"><?= htmlspecialchars($produit['description']) ?></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Prix (FCFA) :</label>
+            <input type="number" name="prix" value="<?= htmlspecialchars($produit['prix']) ?>" required>
+        </div>
+
+        <div class="form-group">
+            <label>Quantité :</label>
+            <input type="number" name="quantite" value="<?= htmlspecialchars($produit['quantite']) ?>" required>
+        </div>
+
+        <div class="form-group">
+            <button type="submit">Enregistrer les modifications</button>
+            <button type="button" class="btn-annuler">
+                <a href="javascript:history.back()" style="text-decoration:none; color:white;">Annuler</a>
             </button>
         </div>
-    </div>
+    </form>
+</div>
+
 </body>
 </html>

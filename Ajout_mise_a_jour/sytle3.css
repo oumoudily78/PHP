@@ -1,52 +1,94 @@
-body{
+/* Style général du corps de la page */
+body {
     background-color: #111827;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    align-items: center;
-    justify-content: center;
-    margin: 70px;
-   
-}
-button{
-    background-color: rgb(18, 174, 18);
-    color: white;
-    padding: 12px 30px;
-    border: none;
-    font-size: 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    
-}
-h3{
-    border: solid 1px blueviolet;
-    width: 50%;
-    padding: 5px;
-    text-align: center;
-    background-color: blueviolet;
-    margin-left: 30px;
-    border-radius: 20px;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center;     /* Centre verticalement */
+    min-height: 100vh;       /* Prend toute la hauteur de l'écran */
 }
 
-Label{
+/* Le conteneur principal (le carré bleu/violet) */
+.block {
+    width: 100%;
+    max-width: 450px; /* Largeur max pour que ce soit élégant */
+    padding: 30px;
+    background: #4c1d95; /* Une variante plus profonde de blueviolet */
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+h3 {
+    color: white;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+}
+
+/* LE FORMULAIRE : On force l'empilement vertical */
+form {
     display: flex;
-    margin-bottom: 8px;
+    flex-direction: column; /* Les éléments vont les uns sous les autres */
+    gap: 20px;              /* Espace entre chaque groupe (Label + Input) */
+}
+
+/* Chaque groupe (Label + Input) */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
     font-weight: bold;
     color: #ebe4e4;
-}
-.block{
-    width: 100%;
-    padding: 30px 40px;
-    background: blueviolet;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    text-align: left;
-    width: 100%;
-    max-width: 400px;
-}
-form{
-    display: flex;
-    gap: 1px;
-    margin-left: 60px;
-    padding: 10px;
-    border: solid 2px color rgb(255, 254, 254);
+    font-size: 0.9rem;
 }
 
+/* Style des champs de saisie (Inputs et Textarea) */
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #374151;
+    background-color: #1f2937;
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box; /* Pour que le padding ne dépasse pas */
+}
+
+input:focus {
+    outline: 2px solid #8b5cf6;
+    border-color: transparent;
+}
+
+/* Boutons */
+button {
+    background-color: #10b981; /* Un vert plus moderne */
+    color: white;
+    padding: 14px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #059669;
+}
+
+/* Bouton Annuler */
+.btn-annuler {
+    background-color: #ef4444; /* Rouge */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-annuler:hover {
+    background-color: #dc2626;
+}

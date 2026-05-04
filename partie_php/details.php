@@ -32,7 +32,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Détails du produit</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style2.css">
 </head>
 <body>
     <div class="detail-box">
