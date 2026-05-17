@@ -26,13 +26,17 @@ if (!empty($search)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Boutique</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style4.css">
 </head>
 <body>
     <header class="head">
         <h2>🛍 Omnistock Vesta</h2>
+        <nav class="navbar">
+            <a href="partie_php/pc2.php">produits</a>
+            <a href="administration.php">Categorie</a>
+        </nav>
     </header>
-
+    
     <div class="dashboard">
 
         <aside class="sidebar">
@@ -41,7 +45,6 @@ if (!empty($search)) {
                     <li class="menu-btn active">🏠 Accueil</li>
                     <li><a href="administration.php"><button class="menu-btn active">⚙️ Administration</button></a></li>
                 </ul>
-                <h3>Bienvenue 🖐</h3>
         </aside>
         <main class="main-content">
             <h1>Gestion des Produits</h1>

@@ -34,10 +34,14 @@ if (!$categorie) {
         <label>Code (ID):</label>
         <input type="text" value="<?= $categorie['id'] ?>" disabled><br><br>
 
+        <label for="code">code :</label>
+        <input type="text" name="code" value="<?= htmlspecialchars($categorie['code']) ?>" required><br><br>
+
         <label for="label">Nouveau Label:</label>
         <input type="text" name="label" value="<?= htmlspecialchars($categorie['label']) ?>" required><br><br>
 
         <button type="submit">Mise à jour</button>
+        <a href="../administration.php">retour</a>
     </form>
 </body>
 </html>

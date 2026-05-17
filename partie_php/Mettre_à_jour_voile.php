@@ -65,7 +65,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         <div class="form-group">
             <button type="submit">Enregistrer les modifications</button>
             <button class="bouton_ok">
-                <a href="pc2.php">Annuler</a>
+                <a href="voile2.php">Annuler</a>
             </button>
         </div>
     </form>

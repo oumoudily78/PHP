@@ -1,23 +1,54 @@
 <?php
 require_once 'config.php';
 
-// 1. On récupère le mot tapé par l'utilisateur
+// Nombre de produits par page
+$limite = 5;
+
+// Page actuelle
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+if($page < 1){
+    $page = 1;
+}
+
+// Position de départ
+$debut = ($page - 1) * $limite;
+
+// Recherche
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-try {
-    // 2. Requête filtrée par le nom (si $search n'est pas vide)
-    $sql = "SELECT p.*, c.label 
-            FROM produits p 
-            JOIN categories c ON p.categorie_id = c.id 
-            WHERE c.label = 'PC' AND p.nom LIKE :search";
-            
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(['search' => "%$search%"]);
-    $produits = $stmt->fetchAll();
-    
-} catch (Exception $e) {
-    $produits = [];
-}
+// Compter le nombre total de produits
+$sqlCount = "SELECT COUNT(*) as total
+             FROM produits p
+             JOIN categories c ON p.categorie_id = c.id
+             WHERE c.label = 'PC'
+             AND p.nom LIKE :search";
+
+$stmtCount = $pdo->prepare($sqlCount);
+$stmtCount->execute([
+    'search' => "%$search%"
+]);
+
+$totalProduits = $stmtCount->fetch()['total'];
+
+// Nombre total de pages
+$totalPages = ceil($totalProduits / $limite);
+
+// Requête principale avec pagination
+$sql = "SELECT p.*, c.label
+        FROM produits p
+        JOIN categories c ON p.categorie_id = c.id
+        WHERE c.label = 'PC'
+        AND p.nom LIKE :search
+        LIMIT $debut, $limite";
+
+$stmt = $pdo->prepare($sql);
+
+$stmt->execute([
+    'search' => "%$search%"
+]);
+
+$produits = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +76,7 @@ try {
             <button class="bouton_ajouter">
                 <a href="Ajouter_produit.php" style="text-decoration:none; color:inherit;">+ Ajouter</a>
             </button>
+            <button class="bouton_ajouter"><a href="../administration.php">retour</a></button>
         </div>
 
         <table class="admin-table">
@@ -91,6 +123,30 @@ try {
                 <?php endif; ?>
             </tbody>
         </table>
+        <div class="pagination">
+
+            <?php if($page > 1){ ?>
+                <a href="?page=<?php echo $page - 1; ?>&search=<?php echo $search; ?>">
+                    Précédent
+                </a>
+            <?php } ?>
+
+            <?php for($i = 1; $i <= $totalPages; $i++){ ?>
+
+                <a href="?page=<?php echo $i; ?>&search=<?php echo $search; ?>"
+                class="<?php if($i == $page) echo 'active'; ?>">
+                <?php echo $i; ?>
+                </a>
+
+            <?php } ?>
+
+            <?php if($page < $totalPages){ ?>
+                <a href="?page=<?php echo $page + 1; ?>&search=<?php echo $search; ?>">
+                    Suivant
+                </a>
+            <?php } ?>
+
+        </div>
     </div>
 
     <footer class="footer">

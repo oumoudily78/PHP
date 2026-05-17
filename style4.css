@@ -19,7 +19,7 @@ h3{
     width: 240px;
     min-height: 100vh;
     padding: 20px;
-    background: linear-gradient(180deg, #0f172a, #0ea5e9);
+    background: linear-gradient(180deg, #e2e5eb, #0ea5e9);
     color: white ;
     box-shadow: 4px 0 10px rgba(0,0,0,0.3);
     box-sizing: border-box;
@@ -88,7 +88,7 @@ tr{
 }
 
 .card {
-    background: blueviolet;
+    background: rgb(89, 89, 241);
     padding: 20px;
     border-radius: 10px;
     width: 120px;
@@ -100,11 +100,11 @@ table {
     width: 100%;
     border-collapse: collapse;
     background: white;
-    border: solid white;
+    border: solid black;
 }
 
 th, td {
-    border: 1px solid #ddd;
+    border: 1px solid black;
     padding: 10px;
 }
 
@@ -127,7 +127,7 @@ th {
 
 .admin-table th,
 .admin-table td {
-    border: 1px solid #ddd;
+    border: 1px solid black;
     padding: 12px;
     text-align: center;
     color: black;
@@ -283,7 +283,8 @@ a{
 }
 .btn_dus-update,
 .btn_dus-sup,
-.btn_dus-details{
+.btn_dus-details,
+.btn_dus-produits{
     padding: 12px 18px;
     border: none;
     border-radius: 8px;
@@ -300,5 +301,9 @@ a{
 }
 .btn_dus-details{
     background: #f59e0b;
+    color: white;
+}
+.btn_dus-produits{
+    background: green;
     color: white;
 }

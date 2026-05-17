@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['nom'])) {
             </select>
 
             <button type="submit" name ="valider" class="bouton_ajouter">Enregistrer le produit</button>
-            <button><a href="pc2.php">Annuler</a></button>
+            <button><a href="voile2.php">Annuler</a></button>
         </form>
     </div>
 </body>

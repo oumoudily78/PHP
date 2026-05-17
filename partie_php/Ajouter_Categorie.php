@@ -1,20 +1,21 @@
 <?php
-var_dump($_POST);
-// 1. Connexion à la base
-require_once 'config.php'; 
+require_once 'config.php';
 
-$message = "";
-
-// 2. Traitement si on clique sur le bouton
-if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['label'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['label']) && !empty($_POST['code'])) {
     $label = $_POST['label'];
+    $code  = $_POST['code']; // On récupère le code du formulaire
+
     try {
-        $sql = "INSERT INTO categories (label) VALUES (:label)";
+        // AJOUT DE LA COLONNE 'code' DANS LA REQUÊTE
+        $sql = "INSERT INTO categories (label, code) VALUES (:label, :code)";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(['label' => $label]);
-        echo "Succès !"; 
+        $stmt->execute([
+            'label' => $label,
+            'code'  => $code
+        ]);
+        header("Location: ../administration.php?success=1"); // Redirection après succès
+        exit();
     } catch (PDOException $e) {
-        // Cela va t'afficher la VRAIE erreur si MySQL refuse
         die("Erreur MySQL : " . $e->getMessage());
     }
 }
@@ -29,13 +30,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['label'])) {
 <body>
     <div class="block">
         <h3>Ajouter une catégorie</h3>
-        <?php echo $message; ?>
         <form action="Ajouter_Categorie.php" method="POST" >
             <label for="text">Code:</label> 
             <input type="text" name="code" id="text"><br><br>
             <label for="text">Label:</label>
             <input type="text"name="label" id="text"><br><br>
             <button type="submit" >Ajouter</button>
+            <a href="../administration.php">retour</a>
         </form>
     </div>
 </body>

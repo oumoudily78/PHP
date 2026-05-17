@@ -26,7 +26,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administration</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style4.css">
 </head>
 <script>
 function supprimerLigne(btn) {
@@ -36,15 +36,19 @@ function supprimerLigne(btn) {
 }
 </script>
 <body>
-    <header class="head">
+   <header class="head">
         <h2>🛍 Omnistock Vesta</h2>
+        <nav class="navbar">
+            <a href="partie_php/pc2.php">produits</a>
+            <a href="administration.php">Categorie</a>
+        </nav>
     </header>
     <div class="dashboard">
 
         <aside class="sidebar">
             <ul>
                 <li><a href="accueil.php"><button class="menu-btn active">🏠 Accueil</button></a></li>
-                <li class="active"><a href="administration.html"><button class="menu-btn active">⚙️ Administration</button></a></li>
+                <button class="menu-btn active">⚙️ Administration</button>
             </ul>
         </aside>
 
@@ -67,6 +71,14 @@ function supprimerLigne(btn) {
             </div>
             <h2>Liste des categorie</h2>
             <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Code</th>
+                        <th>Label</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <?php if (!empty($liste_categories)): ?>
                         <?php foreach ($liste_categories as $cat): ?>
@@ -78,9 +90,11 @@ function supprimerLigne(btn) {
                                     <button class="btn_dus-update">
                                         <a href="partie_php/Mise_à_jour_Categorie.php?id=<?= $cat['id'] ?>">Update</a>
                                     </button>
-                                    
                                     <button class="btn_dus-sup">
-                                        <a href="partie_php/supprimer.php?id=<?= $cat['id'] ?>&type=categorie" onclick="return confirm('Supprimer  cette categorie?');">Supprimer</a>
+                                        <a href="partie_php/supprimer.php?id=<?= $cat['id'] ?>&type=categorie" onclick="return confirm('Supprimer ?');">Supprimer</a>
+                                    </button>
+                                    <button class="btn_dus-produits">
+                                        <a href="partie_php/pc2.php?id=<?= $cat['id'] ?>">produits</a>
                                     </button>
                                 </td>
                             </tr>
@@ -90,7 +104,7 @@ function supprimerLigne(btn) {
                             <td colspan="4" style="text-align:center;">Aucune catégorie trouvée.</td>
                         </tr>
                     <?php endif; ?>
-</tbody>
+                </tbody>
             </table>
         </main>
     </div>
