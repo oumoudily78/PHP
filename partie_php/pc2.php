@@ -57,7 +57,7 @@ $produits = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion PC - Omnistock Vesta</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style4.css?= time(); ?>">
 </head>
 <body>
     <div class="categorie_body">

@@ -307,3 +307,56 @@ a{
     background: green;
     color: white;
 }
+/* ==========================================
+   HABILLAGE DE LA PAGINATION AU CENTRE
+   ========================================== */
+
+/* 1. Le conteneur principal (déjà OK chez toi) */
+.pagination {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 35px auto !important;
+    padding: 12px !important;
+    background-color: #ffffff !important; /* Crée le bloc blanc de fond */
+    border-radius: 8px !important;
+    max-width: fit-content !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important; /* Ombre plus visible */
+    gap: 10px !important;
+}
+
+/* 2. Style ultra-prioritaire pour TOUS les liens de page */
+.pagination a.page-link, 
+.pagination .page-link {
+    display: inline-block !important;
+    padding: 8px 16px !important;
+    background-color: #f8f9fa !important; /* Fond gris très clair par défaut */
+    color: #333333 !important;             /* Couleur du texte sombre */
+    text-decoration: none !important;      /* Supprime le soulignement */
+    border: 1px solid #ccced1 !important;  /* Bordure bien visible */
+    border-radius: 4px !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    transition: all 0.2s ease !important;
+}
+
+/* 3. L'effet au survol d'un bouton */
+.pagination a.page-link:hover {
+    background-color: #e2e6ea !important;
+    border-color: #adb5bd !important;
+    color: #000000 !important;
+}
+
+/* 4. Force le BLEU ROYAL sur le bouton de la page active (ex: la page 1) */
+.pagination a.page-link.active,
+.pagination .page-link.active {
+    background-color: #007bff !important; /* Le bleu */
+    border-color: #007bff !important;
+    color: #ffffff !important;             /* Texte écrit en blanc pur */
+}
+
+/* 5. Style pour les boutons textes "Précédent" et "Suivant" */
+.pagination a.prev-next {
+    background-color: #e9ecef !important;
+    color: #007bff !important;
+}

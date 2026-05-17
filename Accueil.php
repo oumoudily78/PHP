@@ -32,8 +32,8 @@ if (!empty($search)) {
     <header class="head">
         <h2>🛍 Omnistock Vesta</h2>
         <nav class="navbar">
-            <a href="partie_php/pc2.php">produits</a>
-            <a href="administration.php">Categorie</a>
+            <button class=""><a href="partie_php/pc2.php">produits</a></button>
+            <button><a href="administration.php">Categorie</a></button>
         </nav>
     </header>
     

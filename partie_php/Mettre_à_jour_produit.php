@@ -1,29 +1,77 @@
 <?php
 require_once 'config.php';
 
-// On récupère l'ID envoyé par l'URL
-if (isset($_GET['id']) && !empty($_GET['id'])) {
+$message = "";
+$id = null;
+
+// 1. On cherche d'abord si l'ID est envoyé par le formulaire (POST)
+if (isset($_POST['id']) && !empty($_POST['id'])) {
+    $id = $_POST['id'];
+} 
+// 2. Sinon, on regarde si l'ID est dans l'URL (GET)
+elseif (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = $_GET['id'];
+}
 
-    try {
-        // On récupère les infos du produit et le nom de sa catégorie
-        $sql = "SELECT p.*, c.label as nom_categorie 
-                FROM produits p 
-                JOIN categories c ON p.categorie_id = c.id 
-                WHERE p.id = :id";
-        
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['id' => $id]);
-        $produit = $stmt->fetch();
+// SI AUCUN ID N'EST TROUVÉ, ON ARRÊTE TOUT DE SUITE
+if (!$id) {
+    die("Erreur critique : ID manquant. Impossible de savoir quel produit modifier.");
+}
 
-        if (!$produit) {
-            die("Erreur : Produit introuvable.");
+// ==========================================
+// ÉTAPE A : TRAITEMENT DU FORMULAIRE (POST)
+// ==========================================
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nom = isset($_POST['nom']) ? trim($_POST['nom']) : '';
+    $description = isset($_POST['description']) ? trim($_POST['description']) : '';
+    $prix = isset($_POST['prix']) ? $_POST['prix'] : 0;
+    $quantite = isset($_POST['quantite']) ? $_POST['quantite'] : 0;
+
+    if (!empty($nom)) {
+        try {
+            $sql_update = "UPDATE produits 
+                           SET nom = :nom, description = :description, prix = :prix, quantite = :quantite 
+                           WHERE id = :id";
+            
+            $stmt_update = $pdo->prepare($sql_update);
+            $stmt_update->execute([
+                'nom' => $nom,
+                'description' => $description,
+                'prix' => $prix,
+                'quantite' => $quantite,
+                'id' => $id
+            ]);
+
+            // Redirection vers ton tableau de produits après succès
+            header("Location: pc2.php?success=update");
+            exit();
+
+        } catch (Exception $e) {
+            $message = "<p style='color: red;'>Erreur SQL : " . $e->getMessage() . "</p>";
         }
-    } catch (Exception $e) {
-        die("Erreur SQL : " . $e->getMessage());
+    } else {
+        $message = "<p style='color: red;'>Le nom du produit est obligatoire.</p>";
     }
-} else {
-    die("ID manquant.");
+}
+
+// ==========================================
+// ÉTAPE B : CHARGEMENT DES INFOS DU PRODUIT (S'affiche dans les inputs)
+// ==========================================
+try {
+    $sql = "SELECT p.*, c.label as nom_categorie 
+            FROM produits p 
+            JOIN categories c ON p.categorie_id = c.id 
+            WHERE p.id = :id";
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['id' => $id]);
+    $produit = $stmt->fetch();
+
+    if (!$produit) {
+        die("Erreur : Le produit avec l'ID " . htmlspecialchars($id) . " n'existe pas en base de données.");
+    }
+} catch (Exception $e) {
+    die("Erreur SQL lors de la récupération : " . $e->getMessage());
 }
 ?>
 
@@ -39,7 +87,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 <div class="block">
     <h3>Modifier le produit</h3>
     
-    <form action="traiter_update.php" method="POST">
+    <form action="Mettre_à_jour_produit.php" method="POST">
         <input type="hidden" name="id" value="<?= $produit['id'] ?>">
 
         <div class="form-group">

@@ -1,35 +1,56 @@
 <?php
-// 1. On appelle la config
 require_once 'config.php';
 
-// On récupère la recherche
+// Nombre de produits par page
+$limite = 5;
+
+// Page actuelle
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+if($page < 1){
+    $page = 1;
+}
+
+// Position de départ
+$debut = ($page - 1) * $limite;
+
+// Recherche
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-try {
-    // 2. Requête SQL avec JOIN (comme pour le PC)
-    // On utilise :s1 et :s2 pour éviter l'erreur SQL de tout à l'heure
-    if (!empty($search)) {
-        $sql = "SELECT p.*, c.label FROM produits p 
-                JOIN categories c ON p.categorie_id = c.id 
-                WHERE c.label = 'Voile' 
-                AND (p.nom LIKE :s1 OR p.description LIKE :s2)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            's1' => "%$search%",
-            's2' => "%$search%"
-        ]);
-    } else {
-        $sql = "SELECT p.*, c.label FROM produits p 
-                JOIN categories c ON p.categorie_id = c.id 
-                WHERE c.label = 'Voile'";
-        $stmt = $pdo->query($sql);
-    }
-    
-    $produits = $stmt->fetchAll();
-} catch (Exception $e) {
-    die("Erreur lors de la récupération : " . $e->getMessage());
-}
+// Compter le nombre total de produits
+$sqlCount = "SELECT COUNT(*) as total
+             FROM produits p
+             JOIN categories c ON p.categorie_id = c.id
+             WHERE c.label = 'PC'
+             AND p.nom LIKE :search";
+
+$stmtCount = $pdo->prepare($sqlCount);
+$stmtCount->execute([
+    'search' => "%$search%"
+]);
+
+$totalProduits = $stmtCount->fetch()['total'];
+
+// Nombre total de pages
+$totalPages = ceil($totalProduits / $limite);
+
+// Requête principale avec pagination
+$sql = "SELECT p.*, c.label
+        FROM produits p
+        JOIN categories c ON p.categorie_id = c.id
+        WHERE c.label = 'voile'
+        AND p.nom LIKE :search
+        LIMIT $debut, $limite";
+
+$stmt = $pdo->prepare($sql);
+
+$stmt->execute([
+    'search' => "%$search%"
+]);
+
+$produits = $stmt->fetchAll();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -37,7 +58,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion Voile - Omnistock Vesta</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style4.css?= time(); ?>">
 </head>
 <body>
     <div class="categorie_body">
@@ -103,6 +124,30 @@ try {
                 <?php endif; ?>
             </tbody>
         </table>
+        <div class="pagination">
+
+            <?php if($page > 1){ ?>
+                <a href="?page=<?php echo $page - 1; ?>&search=<?php echo $search; ?>">
+                    Précédent
+                </a>
+            <?php } ?>
+
+            <?php for($i = 1; $i <= $totalPages; $i++){ ?>
+
+                <a href="?page=<?php echo $i; ?>&search=<?php echo $search; ?>"
+                class="<?php if($i == $page) echo 'active'; ?>">
+                <?php echo $i; ?>
+                </a>
+
+            <?php } ?>
+
+            <?php if($page < $totalPages){ ?>
+                <a href="?page=<?php echo $page + 1; ?>&search=<?php echo $search; ?>">
+                    Suivant
+                </a>
+            <?php } ?>
+
+        </div>
     </div>
 
     <footer class="footer">
